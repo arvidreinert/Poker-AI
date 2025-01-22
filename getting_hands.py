@@ -42,8 +42,24 @@ def is_straight(cards):
         else:
             current_streak = 1
     return False
+
 def is_flush(cards):
-    pass
+    cols = []
+    for ca in cards:
+        if ca < 100:
+            co = int(ca/10)
+        else:
+            co = int(ca/100)
+        cols.append(co)
+    counters = {1:0,2:0,3:0,4:0}
+    for i in cols:
+        counters[i] += 1
+    print(counters)
+    for i in counters:
+        if counters[i] >= 5:
+            return True
+    return False
+
 def random_c():
     return ac.pop(random.randint(0,len(ac)-1))
 
@@ -75,4 +91,4 @@ for i in range(0,7):
     karten.append(random_c())
 for i in karten:
     print(f"{i}:{readable_c(i)}")
-print(is_straight(karten))
+print(is_flush(karten))
